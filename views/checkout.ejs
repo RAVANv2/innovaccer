@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1><center>Check Out</center></h1>
+	<form class="form-group" id="myform">
+
+  
+      <label for="inputEmail4">Email</label>
+      <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email" class="form-control">
+
+
+  <button type="submit" class="btn btn-primary form-control">CheckOut</button>
+</form>
+</div>
+</div>
+<script>
+    $("#myform").submit(function(e) {
+      e.preventDefault();
+      var data = new FormData(document.getElementById("myform"));
+
+      let jsonObject = {};
+
+      for (const [key, value] of data.entries()) {
+        jsonObject[key] = value;
+      }
+      jsonObject2 = JSON.stringify(jsonObject);
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "http://localhost:3000/checkout");
+      xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+      xhr.send(jsonObject2);
+      console.log(jsonObject2);
+      window.location.href = "/out";
+    });
+  </script>
+</body>
+</html>

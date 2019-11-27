@@ -8,8 +8,12 @@ require("./db/db");
 app.use(express.json());
 app.use(userRouter);
  
-app.get("/", (req, res) => {
- res.sendFile(__dirname + "/basic.html");
+app.set("views", __dirname + "/views");
+app.set("view engine", "ejs"); 
+
+app.get("/",async (req,res,next)=>{
+res.render('basic.ejs');
+next();
 });
  
 app.listen(port, () => {
